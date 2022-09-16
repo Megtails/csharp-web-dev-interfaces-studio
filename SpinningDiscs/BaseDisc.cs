@@ -11,6 +11,7 @@ namespace SpinningDiscs
         public string DataType { get; set; }
         public string UserSelection;
         public int DiskSpeed = 0;
+        public bool isOn = false;
         public bool isSpinning = false;
 
         public BaseDisc(string name, int capacity, List<string> contents, string dataType)

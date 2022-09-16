@@ -8,7 +8,7 @@ namespace SpinningDiscs
         // TODO: Implement your custom interface.
         public void Spin()
         {
-            isSpinning = true;
+                isSpinning = true;
         }
 
         // TODO: Determine which fields, methods, and constructors can be extended from the base class and which ones
@@ -17,16 +17,32 @@ namespace SpinningDiscs
         {
         }
 
-        public void StoreData(string baseData)
+        public override void StoreData(List<string> baseData)
         {
-            if(isSpinning)
+            if (isSpinning)
             {
-                Contents.Add(baseData);
-                Capacity--;
+                foreach (string i in baseData)
+                {
+                    Contents.Add(i);
+                    Capacity--;
+                }
             }
         }
 
-        public void ReadData()
+        public override void WriteData(List<string> newData)
+        {
+            if (isSpinning)
+            {
+                foreach (string j in newData)
+                {
+                    Contents.Add(j);
+                    Capacity--;
+                }
+            }
+
+        }
+
+        public override void ReadData()
         {
             if (isSpinning)
             {
@@ -34,7 +50,7 @@ namespace SpinningDiscs
             }
         }
 
-        public void ReportData()
+        public override void ReportData()
         {
             if (isSpinning)
             {
@@ -45,7 +61,7 @@ namespace SpinningDiscs
             }
         }
 
-        public void SelectData()
+        public override void SelectData()
         {
             string userSelection;
             Console.WriteLine("Make a selection.");
@@ -64,7 +80,7 @@ namespace SpinningDiscs
             }
         }
 
-        public void Playback()
+        public override void Playback()
         {
             Console.WriteLine($"{UserSelection}");
         }

@@ -17,18 +17,37 @@ namespace SpinningDiscs
         {
         }
 
-        public void StoreData(string baseData)
+        public override void StoreData(List<string> baseData)
         {
-            Contents.Add(baseData);
-            Capacity--;
+            if(isSpinning)
+            {
+                foreach(string i in baseData)
+                {
+                    Contents.Add(i);
+                    Capacity--;
+                }
+            }
         }
 
-        public void ReadData()
+        public override void WriteData(List<string> newData)
+        {
+            if (isSpinning)
+            {
+                foreach (string j in newData)
+                {
+                    Contents.Add(j);
+                    Capacity--;
+                }
+            }
+
+        }
+
+        public override void ReadData()
         {
             Console.WriteLine("Content Extracted");
         }
 
-        public void ReportData()
+        public override void ReportData()
         {
             foreach (string j in Contents)
             {
@@ -36,7 +55,7 @@ namespace SpinningDiscs
             }
         }
 
-        public void SelectData()
+        public override void SelectData()
         {
             string userSelection;
             Console.WriteLine("Make a selection.");
@@ -55,7 +74,7 @@ namespace SpinningDiscs
             }
         }
 
-        public void Playback()
+        public override void Playback()
         {
             Console.WriteLine($"{UserSelection}");
         }
